@@ -6,7 +6,7 @@ require('dotenv').config();
 async function setupDatabase() {
   // Use environment variables instead of hardcoded localhost
   const connectionConfig = {
-    host: process.env.DB_HOST || process.env.MYSQL_HOST || '127.0.0.1',
+    host: process.env.DB_HOST || process.env.MYSQL_HOST || 'containers-us-west-xx.railway.app',
     port: parseInt(process.env.DB_PORT || process.env.MYSQL_PORT || '3306'),
     user: process.env.DB_USER || process.env.MYSQL_USER || 'root',
     password: process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD || 'root',
