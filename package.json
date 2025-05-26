@@ -4,7 +4,7 @@
   "description": "School Management API with location-based sorting",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node setup-db.js",
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
