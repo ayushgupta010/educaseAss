@@ -5,9 +5,7 @@ const path = require('path');
 async function setupDatabase() {
   try {
     const connection = await mysql.createConnection({
-      host: '127.0.0.1',
-      user: 'root',
-      password: 'root' 
+      uri:process.env.DB_URL 
     });
 
     console.log('Connected to MySQL server');

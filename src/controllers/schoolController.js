@@ -23,7 +23,7 @@ exports.addSchool = async (req, res) => {
     const { name, address, latitude, longitude } = req.body;
     
     const [result] = await pool.execute(
-      'INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)',
+      'INSERT INTO school (name, address, latitude, longitude) VALUES (?, ?, ?, ?)',
       [name, address, latitude, longitude]
     );
 
@@ -57,9 +57,9 @@ exports.listSchools = async (req, res) => {
 
     const { latitude, longitude } = req.query;
     
-    const [schools] = await pool.execute('SELECT * FROM schools');
+    const [school] = await pool.execute('SELECT * FROM school');
   
-    const schoolsWithDistance = schools.map(school => ({
+    const schoolWithDistance = school.map(school => ({
       ...school,
       distance: calculateDistance(
         parseFloat(latitude),
@@ -69,11 +69,11 @@ exports.listSchools = async (req, res) => {
       )
     }));
 
-    schoolsWithDistance.sort((a, b) => a.distance - b.distance);
+    schoolWithDistance.sort((a, b) => a.distance - b.distance);
 
     res.json({
       success: true,
-      data: schoolsWithDistance
+      data: schoolWithDistance
     });
   } catch (error) {
     console.error('Error listing schools:', error);
